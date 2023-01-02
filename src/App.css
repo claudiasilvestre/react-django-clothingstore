@@ -36,6 +36,17 @@ a {
   padding-left: 20px;
 }
 
+.product {
+  display: flex;
+  justify-content: center;
+}
+
+.product-description {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
 .responsive {
   width: 100%;
   height: auto;
@@ -46,6 +57,8 @@ a {
 }
 
 h1 {
+  margin-top: 5px;
+  margin-bottom: 5px;
   font-family: 'Italiana', serif;
 }
 
@@ -53,6 +66,66 @@ h3 {
   margin-top: 5px;
   margin-bottom: 5px;
   font-family: 'Italiana', serif;
+}
+
+.p-20 {
+  padding: 20px;
+}
+
+.pt-20 {
+  padding-top: 20px;
+}
+
+.mr-10 {
+  margin-right: 5px;
+}
+
+.ml-10 {
+  margin-left: 5px;
+}
+
+.f-l {
+  font-size: large;
+}
+
+.options-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart-button {
+  padding: 10px 20px 10px 20px;
+  font-family: 'Italiana', serif;
+  font-size: large;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+}
+
+.sizes-select {
+  margin-bottom: 15px;
+  font-family: 'Italiana', serif;
+  font-size: large;
+  font-weight: bold;
+}
+
+.heart-button {
+  padding: 7px 10px 7px 10px;
+  background-color: white;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+}
+
+p {
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-top: 5px;
+  font-size: small;
 }
 
 @media (prefers-reduced-motion: no-preference) {
