@@ -24,10 +24,10 @@ const Product = () => {
                     <div className="pt-20">
                         <Select className="sizes-select" placeholder="Talla" options={options} />
                         <div className="options-group">
-                            <button className="cart-button mr-10 responsive">
+                            <button className="cart-button mr-5 responsive">
                                 Añadir a mi cesta
                             </button>
-                            <button className="heart-button ml-10">
+                            <button className="heart-button ml-5">
                                 <AiOutlineHeart size="25px" />
                             </button>
                         </div>
