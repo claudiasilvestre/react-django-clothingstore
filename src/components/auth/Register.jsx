@@ -11,7 +11,7 @@ const Register = () => {
                 <input type="email" className="mb-10" placeholder="Correo" />
                 <input type="password" className="mb-10" placeholder="Contraseña" />
                 <button className="auth-button mb-10" type="submit">Registrarse</button>
-                <a>Ya tengo una cuenta</a>
+                <a className="f-s">Ya tengo una cuenta</a>
             </div>
         </div>
     </Layout>

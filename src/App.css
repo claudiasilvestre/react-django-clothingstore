@@ -92,6 +92,10 @@ h3 {
   font-size: large;
 }
 
+.f-s {
+  font-size: small;
+}
+
 .options-group {
   display: flex;
   align-items: center;
