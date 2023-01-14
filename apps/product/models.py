@@ -7,4 +7,6 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    size = models.ForeignKey(Size, on_delete=models.CASCADE)
+    sizes = models.ManyToManyField(Size)
+    quantity = models.IntegerField(default=0)
+    sold = models.IntegerField(default=0)
