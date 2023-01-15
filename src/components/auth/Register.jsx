@@ -1,4 +1,5 @@
 import Layout from '../../hocs/Layout'
+import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
@@ -11,7 +12,7 @@ const Register = () => {
                 <input type="email" className="mb-10" placeholder="Correo" />
                 <input type="password" className="mb-10" placeholder="Contraseña" />
                 <button className="auth-button mb-10" type="submit">Registrarse</button>
-                <a className="f-s">Ya tengo una cuenta</a>
+                <Link to="/account/login" className="f-s">Ya tengo una cuenta</Link>
             </div>
         </div>
     </Layout>

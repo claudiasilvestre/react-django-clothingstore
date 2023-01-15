@@ -15,7 +15,7 @@ const Product = () => {
         <Layout>
             <div className="product">
                 <div className="p-20">
-                    <img className="responsive" src="/img/foto2.png" alt="Camiseta oversize" />
+                    <img className="responsive" src="/media/foto2.png" alt="Camiseta oversize" />
                 </div>
 
                 <div className="p-20 product-description">

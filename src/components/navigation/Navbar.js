@@ -1,11 +1,12 @@
 import { AiOutlineUser, AiOutlineShopping } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
     return (
         <header>
-            <a href="/"><h1>CS</h1></a>
+            <Link to="/"><h1>CS</h1></Link>
             <div>
-                <a href="#"><AiOutlineUser size="25px" /></a>
+                <Link to="/account/login"><AiOutlineUser size="25px" /></Link>
                 <a href="#"><AiOutlineShopping className="nav-m" size="25px" /></a>
             </div>
         </header>
