@@ -1,6 +1,9 @@
 import Layout from '../hocs/Layout'
 import { AiOutlineHeart } from "react-icons/ai";
 import Select from 'react-select'
+import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import axios from "axios";
 
 const options = [
     { value: 'xs', label: 'XS' },
@@ -11,16 +14,28 @@ const options = [
 ]
 
 const Product = () => {
+    const { productId } = useParams();
+
+    const [product, setProduct] = useState({});
+
+    useEffect(() => {
+        const url = '/api/product/'+productId;
+        axios.get(url).then((response) => {
+            setProduct(response.data.product);
+        });
+
+      }, []);
+
     return (
         <Layout>
             <div className="product">
                 <div className="p-20">
-                    <img className="responsive" src="/media/foto2.png" alt="Camiseta oversize" />
+                    <img className="responsive" src="/media/foto2.png" alt={product.name} />
                 </div>
 
                 <div className="p-20 product-description">
-                    <h1>Camiseta oversize</h1>
-                    <span className="prize f-l">€20,00</span>
+                    <h1>{product.name}</h1>
+                    <span className="price f-l">€{product.price}</span>
                     <div className="pt-20">
                         <Select className="sizes-select" placeholder="Talla" options={options} />
                         <div className="options-group">
@@ -34,7 +49,7 @@ const Product = () => {
                     </div>
                     <div className="pt-20">
                         <h3>Descripción completa</h3>
-                        <p>Camiseta básica oversize de manga corta, con cuello redondo y confeccionadas en tejido 100% algodón.</p>
+                        <p>{product.description}</p>
                     </div>
                 </div>
             </div>

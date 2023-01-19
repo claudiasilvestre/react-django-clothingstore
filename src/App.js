@@ -12,7 +12,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path='/' element={<Home />} />
-        <Route exact path='/product' element={<Product />} />
+        <Route exact path='/products/:productId' element={<Product />} />
         <Route exact path='/account/login' element={<Login />} />
         <Route exact path='/account/register' element={<Register />} />
       </Routes>
