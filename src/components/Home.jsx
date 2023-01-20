@@ -22,7 +22,9 @@ const Home = () => {
                 <div className="group">
                     {products.map(product => (
                         <div className="clothes">
-                            <img className="responsive" src="/media/foto1.png" alt={product.name} />
+                            <Link to={`/products/${product.id}`}>
+                                <img className="responsive" src="/media/foto1.png" alt={product.name} />
+                            </Link>
                             <Link to={`/products/${product.id}`}>
                                 <h3>{product.name}</h3>
                             </Link>
