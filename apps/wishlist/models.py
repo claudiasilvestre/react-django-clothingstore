@@ -1,6 +1,7 @@
 from django.db import models
 from apps.product.models import Product
-from django.contrib.auth.models import User
+from django.conf import settings
+User = settings.AUTH_USER_MODEL
 
 class WishList(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
