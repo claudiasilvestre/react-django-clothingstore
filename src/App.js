@@ -1,4 +1,5 @@
-import React from 'react';
+import { Provider } from 'react-redux';
+import store from './store';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -9,14 +10,16 @@ import Register from './components/auth/Register'
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route exact path='/' element={<Home />} />
-        <Route exact path='/products/:productId' element={<Product />} />
-        <Route exact path='/account/login' element={<Login />} />
-        <Route exact path='/account/register' element={<Register />} />
-      </Routes>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='/products/:productId' element={<Product />} />
+          <Route exact path='/account/login' element={<Login />} />
+          <Route exact path='/account/register' element={<Register />} />
+        </Routes>
+      </Router>
+    </Provider>
   );
 }
 
