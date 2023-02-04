@@ -111,6 +111,22 @@ h3 {
   color: white;
 }
 
+.alert-green {
+  padding: 20px;
+  background-color: #d1e7dd;
+  border-radius: 8px;
+  border-color: #c5e1d4;
+  color: #0f5132;
+}
+
+.alert-red {
+  padding: 20px;
+  background-color: #f8d7da;
+  border-radius: 8px;
+  border-color: #f6ccd0;
+  color: #842029;
+}
+
 .sizes-select {
   margin-bottom: 15px;
   font-family: 'Italiana', serif;
