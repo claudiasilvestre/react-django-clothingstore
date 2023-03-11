@@ -2,7 +2,10 @@ import { AiOutlineUser, AiOutlineShopping } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Alert from '../alert'
 
+import Cart from '../Cart'
+
 export const Navbar = () => {
+
     return (
         <>
             <header>
@@ -13,6 +16,8 @@ export const Navbar = () => {
                 </div>
             </header>
             <Alert />
+
+            <Cart />
         </>
     )
 }
