@@ -15,6 +15,12 @@ header {
   margin: auto 130px;
 }
 
+header button {
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+}
+
 .nav-m {
   margin-left: 10px;
 }
@@ -215,21 +221,34 @@ p {
   color: white;
 }
 
+.sidebarMask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+}
+
 .sidebar {
   position: fixed;
   top: 0;
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   width: 350px;
-  right: 0px;
+  right: -350px;
   height: 100%;
   background: #ffffff;
   color: #000000;
   z-index: 2;
-  transition: left 0.4s ease;
+  transition: right 0.4s ease;
+}
+
+.sidebarShow {
+  right: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .close-button {
-  background-color: #fff;
+  background-color: transparent;
   border: none;
   padding: 0px;
 }
@@ -246,7 +265,7 @@ p {
 
 .count-button {
   padding: 10px;
-  background-color: #fff;
+  background-color: transparent;
   border: none;
 }
 
