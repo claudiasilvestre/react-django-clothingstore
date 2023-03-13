@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from "axios";
-import classNames from 'classnames';
 import { Link } from "react-router-dom";
 import { AiOutlineClose, AiOutlineMinus, AiOutlinePlus, AiOutlineDelete } from "react-icons/ai";
 
@@ -9,17 +8,28 @@ const Cart = props => {
 
     const count = 111;
 
+    const refOne = useRef(null);
+
     useEffect(() => {
         const url = '/api/products';
         axios.get(url).then((response) => {
             setProducts(response.data.products);
         });
 
+        document.addEventListener("click", handleClickOutside, true);
+
+        return () => document.removeEventListener("click", handleClickOutside, true);
       }, []);
 
+    const handleClickOutside = (e) => {
+        if (!refOne.current.contains(e.target)) {
+            props.onChangeIsOpen();
+        }
+    };
+
     return (
-        <div className={props.isOpen ? "sidebarMask" : ""}>
-            <div className={classNames("sidebar", {"sidebarShow": props.isOpen})}>
+        <div className="sidebarMask">
+            <div className="sidebar" ref={refOne}>
                 <div className="flex-row-space pb-20">
                     <h1>Tu carrito</h1>
                     <button onClick={props.onChangeIsOpen} className="close-button"><AiOutlineClose size="20px" /></button>

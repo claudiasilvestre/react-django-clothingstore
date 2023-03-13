@@ -230,21 +230,13 @@ p {
 .sidebar {
   position: fixed;
   top: 0;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px;
   width: 350px;
-  right: -350px;
+  right: 0px;
   height: 100%;
   background: #ffffff;
   color: #000000;
   z-index: 2;
-  transition: right 0.4s ease;
-}
-
-.sidebarShow {
-  right: 0px;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .close-button {

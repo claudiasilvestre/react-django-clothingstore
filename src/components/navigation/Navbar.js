@@ -24,7 +24,9 @@ export const Navbar = () => {
 
             <Alert />
 
-            <Cart isOpen={isOpen} onChangeIsOpen={openCart} />
+            {isOpen &&
+                <Cart onChangeIsOpen={openCart} />
+            }
         </>
     )
 }
