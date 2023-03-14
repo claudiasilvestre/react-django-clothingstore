@@ -19,9 +19,9 @@ const Home = () => {
             <div>
                 <img className="responsive" src="/media/neon.jpg" alt="Cartel japonés de neón" />
 
-                <div className="group">
+                <div className="flex-justify-center p-80">
                     {products.map(product => (
-                        <div className="clothes">
+                        <div className="flex-column pl-20">
                             <Link to={`/products/${product.id}`}>
                                 <img className="responsive" src="/media/foto1.png" alt={product.name} />
                             </Link>

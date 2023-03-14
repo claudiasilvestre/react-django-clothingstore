@@ -10,6 +10,12 @@ const Cart = props => {
 
     const refOne = useRef(null);
 
+    const handleClickOutside = (e) => {
+        if (!refOne.current.contains(e.target)) {
+            props.onChangeIsOpen();
+        }
+    };
+
     useEffect(() => {
         const url = '/api/products';
         axios.get(url).then((response) => {
@@ -20,12 +26,6 @@ const Cart = props => {
 
         return () => document.removeEventListener("click", handleClickOutside, true);
       }, []);
-
-    const handleClickOutside = (e) => {
-        if (!refOne.current.contains(e.target)) {
-            props.onChangeIsOpen();
-        }
-    };
 
     return (
         <div className="sidebarMask">
@@ -41,18 +41,18 @@ const Cart = props => {
                             <img src="/media/foto1.png" alt={product.name} width="100" height="150" />
                         </Link>
 
-                        <div className="flex-column-space">
+                        <div className="flex-column-space w-100 pl-20">
                             <div className="flex-column">
                                 <Link to={`/products/${product.id}`}>
                                     <a>{product.name}</a>
                                 </Link>
-                                <span className="price">S</span>
+                                <span>S</span>
                                 <span className="price">€{product.price}</span>
                             </div>
-                            <div className="options-group">
+                            <div className="flex-align-center-space">
                                 <div className="count-box mb-5">
                                     <button className="count-button"><AiOutlineMinus size="13px" /></button>
-                                    <input type="text" defaultValue={count} className="cart-input" />
+                                    <input type="text" defaultValue={count} className="count-input" />
                                     <button className="count-button"><AiOutlinePlus size="13px" /></button>
                                 </div>
                                 <a href="#"><AiOutlineDelete size="20px" /></a>
