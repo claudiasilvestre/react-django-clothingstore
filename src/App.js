@@ -7,6 +7,7 @@ import Home from './components/Home'
 import Product from './components/Product'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
+import Profile from './components/Profile'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path='/products/:productId' element={<Product />} />
           <Route exact path='/account/login' element={<Login />} />
           <Route exact path='/account/register' element={<Register />} />
+          <Route exact path='/account/profile' element={<Profile />} />
         </Routes>
       </Router>
     </Provider>

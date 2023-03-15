@@ -103,7 +103,7 @@ export const signup = (first_name, last_name, email, password, re_password) => a
         dispatch({
             type: REMOVE_AUTH_LOADING
         });
-        dispatch(setAlert('Error conectando con el servidor, intenta mas tarde.', 'red'));
+        dispatch(setAlert('Error conectando con el servidor, intenta más tarde.', 'red'));
     }
 };
 
@@ -178,7 +178,7 @@ export const login = (email, password) => async dispatch => {
             dispatch({
                 type: REMOVE_AUTH_LOADING
             });
-            dispatch(setAlert('Error al iniciar sesion.', 'red'));
+            dispatch(setAlert('Error al iniciar sesión.', 'red'));
         }
     }
     catch(err){
@@ -188,7 +188,7 @@ export const login = (email, password) => async dispatch => {
         dispatch({
             type: REMOVE_AUTH_LOADING
         });
-        dispatch(setAlert('Error al iniciar sesion. Intenta mas tarde', 'red'));
+        dispatch(setAlert('Error al iniciar sesión. Intenta más tarde', 'red'));
     }
 }
 
@@ -233,7 +233,7 @@ export const activate = (uid, token) => async dispatch => {
         dispatch({
             type: REMOVE_AUTH_LOADING
         });
-        dispatch(setAlert('Error al conectar con el servidor, intenta mas tarde.', 'red'));
+        dispatch(setAlert('Error al conectar con el servidor, intenta más tarde.', 'red'));
     }
 };
 
