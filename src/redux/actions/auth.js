@@ -13,10 +13,8 @@ import {
     AUTHENTICATED_FAIL,
     REFRESH_SUCCESS,
     REFRESH_FAIL,
-    RESET_PASSWORD_SUCCESS,
-    RESET_PASSWORD_FAIL,
-    RESET_PASSWORD_CONFIRM_SUCCESS,
-    RESET_PASSWORD_CONFIRM_FAIL,
+    SET_PASSWORD_SUCCESS,
+    SET_PASSWORD_FAIL,
     LOGOUT
 } from './types'
 import { setAlert } from './alert';
@@ -86,12 +84,12 @@ export const signup = (first_name, last_name, email, password, re_password) => a
                 type: SIGNUP_SUCCESS,
                 payload: res.data
             });
-            dispatch(setAlert('Cuenta creada','green'))
+            dispatch(setAlert('Cuenta creada.','green'))
         } else {
             dispatch({
                 type: SIGNUP_FAIL
             });
-            dispatch(setAlert('Error al crear cuenta', 'red'));
+            dispatch(setAlert('Error al crear cuenta.', 'red'));
         }
         dispatch({
             type: REMOVE_AUTH_LOADING
@@ -103,7 +101,7 @@ export const signup = (first_name, last_name, email, password, re_password) => a
         dispatch({
             type: REMOVE_AUTH_LOADING
         });
-        dispatch(setAlert('Error conectando con el servidor, intenta más tarde.', 'red'));
+        dispatch(setAlert('Error conectando con el servidor. Inténtalo más tarde.', 'red'));
     }
 };
 
@@ -188,7 +186,7 @@ export const login = (email, password) => async dispatch => {
         dispatch({
             type: REMOVE_AUTH_LOADING
         });
-        dispatch(setAlert('Error al iniciar sesión. Intenta más tarde', 'red'));
+        dispatch(setAlert('Error al iniciar sesión. Inténtalo más tarde.', 'red'));
     }
 }
 
@@ -215,12 +213,12 @@ export const activate = (uid, token) => async dispatch => {
             dispatch({
                 type: ACTIVATION_SUCCESS
             });
-            dispatch(setAlert('Cuenta activada correctamente', 'green'));
+            dispatch(setAlert('Cuenta activada correctamente.', 'green'));
         } else {
             dispatch({
                 type: ACTIVATION_FAIL
             });
-            dispatch(setAlert('Error activando cuenta', 'red'));
+            dispatch(setAlert('Error activando cuenta.', 'red'));
         }
         dispatch({
             type: REMOVE_AUTH_LOADING
@@ -233,7 +231,7 @@ export const activate = (uid, token) => async dispatch => {
         dispatch({
             type: REMOVE_AUTH_LOADING
         });
-        dispatch(setAlert('Error al conectar con el servidor, intenta más tarde.', 'red'));
+        dispatch(setAlert('Error al conectar con el servidor. Inténtalo más tarde.', 'red'));
     }
 };
 
@@ -275,52 +273,7 @@ export const refresh = () => async dispatch => {
     }
 }
 
-export const reset_password = (email) => async dispatch => {
-    dispatch({
-        type: SET_AUTH_LOADING
-    });
-
-    const config = {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    };
-
-    const body = JSON.stringify({ email });
-
-    try{
-        const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/reset_password/`, body, config);
-        
-        if (res.status === 204) {
-            dispatch({
-                type: RESET_PASSWORD_SUCCESS
-            });
-            dispatch({
-                type: REMOVE_AUTH_LOADING
-            });
-            dispatch(setAlert('Password reseted', 'green'));
-        } else {
-            dispatch({
-                type: RESET_PASSWORD_FAIL
-            });
-            dispatch({
-                type: REMOVE_AUTH_LOADING
-            });
-            dispatch(setAlert('Error resetting password', 'red'));
-        }
-    }
-    catch(err){
-        dispatch({
-            type: RESET_PASSWORD_FAIL
-        });
-        dispatch({
-            type: REMOVE_AUTH_LOADING
-        });
-        dispatch(setAlert('Error resetting password', 'red'));
-    }
-}
-
-export const reset_password_confirm = (uid, token, new_password, re_new_password) => async dispatch => {
+export const set_password = (new_password, re_new_password, current_password) => async dispatch => {
     dispatch({
         type: SET_AUTH_LOADING
     });
@@ -332,50 +285,39 @@ export const reset_password_confirm = (uid, token, new_password, re_new_password
     };
 
     const body = JSON.stringify({
-        uid,
-        token,
         new_password,
-        re_new_password
+        re_new_password,
+        current_password
     });
 
-    if (new_password !== re_new_password) {
-        dispatch({
-            type: RESET_PASSWORD_CONFIRM_FAIL
-        });
-        dispatch({
-            type: REMOVE_AUTH_LOADING
-        });
-        dispatch(setAlert('Passwords do not match', 'red'));
-    } else {
-        try {
-            const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/reset_password_confirm/`, body, config);
-        
-            if (res.status === 204) {
-                dispatch({
-                    type: RESET_PASSWORD_CONFIRM_SUCCESS
-                });
-                dispatch({
-                    type: REMOVE_AUTH_LOADING
-                });
-                dispatch(setAlert('Password has been reset successfully', 'green'));
-            } else {
-                dispatch({
-                    type: RESET_PASSWORD_CONFIRM_FAIL
-                });
-                dispatch({
-                    type: REMOVE_AUTH_LOADING
-                });
-                dispatch(setAlert('Error resetting your password', 'red'));
-            }
-        } catch(err){
+    try {
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/users/set_password/`, body, config);
+    
+        if (res.status === 204) {
             dispatch({
-                type: RESET_PASSWORD_CONFIRM_FAIL
+                type: SET_PASSWORD_SUCCESS
             });
             dispatch({
                 type: REMOVE_AUTH_LOADING
             });
-            dispatch(setAlert('Error resetting your password', 'red'));
+            dispatch(setAlert('Contraseña modificada correctamente.', 'green'));
+        } else {
+            dispatch({
+                type: SET_PASSWORD_FAIL
+            });
+            dispatch({
+                type: REMOVE_AUTH_LOADING
+            });
+            dispatch(setAlert('No ha sido posible modificar la contraseña.', 'red'));
         }
+    } catch(err){
+        dispatch({
+            type: SET_PASSWORD_FAIL
+        });
+        dispatch({
+            type: REMOVE_AUTH_LOADING
+        });
+        dispatch(setAlert('No ha sido posible modificar la contraseña.', 'red'));
     }
 }
 
@@ -383,5 +325,5 @@ export const logout = () => dispatch => {
     dispatch({
         type: LOGOUT
     });
-    dispatch(setAlert('Succesfully logged out', 'green'));
+    dispatch(setAlert('Se ha cerrado sesión con éxito.', 'green'));
 }

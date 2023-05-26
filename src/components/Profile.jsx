@@ -1,11 +1,18 @@
 import Layout from '../hocs/Layout'
 import { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { logout } from '../redux/actions/auth'
+import { useNavigate } from 'react-router-dom';
 
-const Profile = () => {
+const Profile = ({
+    logout
+  }) => {
   
     useEffect(() => {
         window.scrollTo(0,0)
     }, [])
+
+    const navigate = useNavigate();
 
     const [formDataInfo, setFormDataInfo] = useState({
         first_name: '',
@@ -21,24 +28,33 @@ const Profile = () => {
 
     const onChangeInfo = e => setFormDataInfo({ ...formDataInfo, [e.target.name]: e.target.value });
 
-    const onSubmitInfo = e =>{
+    const onSubmitInfo = e => {
         
     }
 
     const [formDataPass, setFormDataPass] = useState({
-        password: '',
-        re_password: ''
+        new_password: '',
+        re_password: '',
+        current_password: ''
     })
 
     const { 
-        password,
-        re_password
+        new_password,
+        re_password,
+        current_password
     } = formDataPass;
 
     const onChangePass = e => setFormDataPass({ ...formDataPass, [e.target.name]: e.target.value });
 
-    const onSubmitPass = e =>{
+    const onSubmitPass = e => {
         
+    }
+
+    const onClickLogout = e => {
+        e.preventDefault();
+        logout();
+        window.scrollTo(0,0);
+        navigate('/');
     }
 
     return (
@@ -88,10 +104,10 @@ const Profile = () => {
                     <input 
                     type="password" 
                     onChange={e=>onChangePass(e)}
-                    name="password"
-                    value={password}
+                    name="new_password"
+                    value={new_password}
                     className="mb-10" 
-                    placeholder="Contraseña" 
+                    placeholder="Nueva contraseña" 
                     required
                     />
                     <input 
@@ -100,7 +116,16 @@ const Profile = () => {
                     name="re_password"
                     value={re_password}
                     className="mb-10" 
-                    placeholder="Repetir contraseña" 
+                    placeholder="Repetir nueva contraseña" 
+                    required
+                    />
+                    <input 
+                    type="password" 
+                    onChange={e=>onChangePass(e)}
+                    name="current_password"
+                    value={current_password}
+                    className="mb-10" 
+                    placeholder="Contraseña actual" 
                     required
                     />
                     <button 
@@ -112,7 +137,7 @@ const Profile = () => {
                 </form>
 
                 <div className="pt-20 pb-20">
-                    <button className="logout-button">
+                    <button onClick={onClickLogout} className="logout-button">
                         Cerrar sesion
                     </button>
                 </div>
@@ -121,4 +146,10 @@ const Profile = () => {
     )
 }
 
-export default Profile
+const mapStateToProps = state => ({
+
+})
+
+export default connect(mapStateToProps, {
+  logout
+}) (Profile)

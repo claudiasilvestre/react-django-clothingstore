@@ -30,7 +30,7 @@ const Signup = ({
 
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e =>{
+  const onSubmit = e => {
     e.preventDefault();
     signup(first_name, last_name, email, password, re_password);
     window.scrollTo(0,0)

@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 import store from './store';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 import Home from './components/Home'
 import Product from './components/Product'
@@ -16,9 +16,9 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route exact path='/products/:productId' element={<Product />} />
-          <Route exact path='/account/login' element={<Login />} />
+          <Route exact path='/account/login' element={!localStorage.getItem('access') ? <Login /> : <Navigate replace to={"/account/profile"} />} />
           <Route exact path='/account/register' element={<Register />} />
-          <Route exact path='/account/profile' element={<Profile />} />
+          <Route exact path='/account/profile' element={localStorage.getItem('access') ? <Profile /> : <Navigate replace to={"/account/login"} />} />
         </Routes>
       </Router>
     </Provider>
